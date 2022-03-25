@@ -1,14 +1,13 @@
 /*********************** 2016_03_11 *********************
- *ÎÄ¼þÃû  £ºdelay.c
- *ÃèÊö    £º³£ÓÃdelayº¯Êý?
- *Ó²¼þÁ¬½Ó£º----------------
- *¿â°æ±¾  £ºST3.5.0
- *×÷Õß    £ºxiaoboliu
+ *ï¿½Ä¼ï¿½ï¿½ï¿½  ï¿½ï¿½delay.c
+ *ï¿½ï¿½ï¿½ï¿½    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½delayï¿½ï¿½ï¿½ï¿½?
+ *Ó²ï¿½ï¿½ï¿½ï¿½ï¿½Ó£ï¿½----------------
+ *ï¿½ï¿½æ±¾  ï¿½ï¿½ST3.5.0
  *********************************************************/
 #include "delay.h"
 
-static u8  fac_us = 0; //usÑÓÊ±±¶³Ë
-static u16 fac_ms = 0; //msÑÓÊ±±¶³Ë
+static u8  fac_us = 0; //usï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½
+static u16 fac_ms = 0; //msï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½
 
 /**
  * @brief  delay time config
@@ -18,9 +17,9 @@ static u16 fac_ms = 0; //msÑÓÊ±±¶³Ë
  
 void DelayInit()
 {
-	SysTick_CLKSourceConfig(SysTick_CLKSource_HCLK_Div8);  //Ñ¡ÔñÍâ²¿Ê±ÖÓ HCLK/8
-	fac_us = SystemCoreClock/8000000;                        //ÏµÍ³Ê±ÖÓµÄ1/8
-	fac_ms = (u16)fac_us*1000;         //·ÇucosÏÂ£¬´ú±íÃ¿¸ömsÐèÒªµÄsystickÊ±ÖÓÊý
+	SysTick_CLKSourceConfig(SysTick_CLKSource_HCLK_Div8);  //Ñ¡ï¿½ï¿½ï¿½â²¿Ê±ï¿½ï¿½ HCLK/8
+	fac_us = SystemCoreClock/8000000;                        //ÏµÍ³Ê±ï¿½Óµï¿½1/8
+	fac_ms = (u16)fac_us*1000;         //ï¿½ï¿½ucosï¿½Â£ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½msï¿½ï¿½Òªï¿½ï¿½systickÊ±ï¿½ï¿½ï¿½ï¿½
 }
 
  
@@ -33,25 +32,25 @@ void DelayInit()
 void delay_us(u32 nus)
 {
 	u32 temp;
-	SysTick -> LOAD = nus * fac_us;             //Ê±¼ä¼ÓÔØ
-	SysTick -> VAL = 0x00;                      //Çå¿Õ¼ÆÊýÆ÷
-	SysTick -> CTRL|= SysTick_CTRL_ENABLE_Msk;  //¿ªÊ¼µ¹Êý
+	SysTick -> LOAD = nus * fac_us;             //Ê±ï¿½ï¿½ï¿½ï¿½ï¿½
+	SysTick -> VAL = 0x00;                      //ï¿½ï¿½Õ¼ï¿½ï¿½ï¿½ï¿½ï¿½
+	SysTick -> CTRL|= SysTick_CTRL_ENABLE_Msk;  //ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
 	do
 	{
 		temp = SysTick -> CTRL;
 	}
-	while(temp & 0x01 && !(temp & (1 << 16))); //µÈ´ýÊ±¼äµ½´ï
-	SysTick -> CTRL&=~SysTick_CTRL_ENABLE_Msk;  //¹Ø±Õ¼ÆÊýÆ÷
-	SysTick -> VAL = 0x00;                     //Çå¿Õ¼ÆÊýÆ÷	 
+	while(temp & 0x01 && !(temp & (1 << 16))); //ï¿½È´ï¿½Ê±ï¿½äµ½ï¿½ï¿½
+	SysTick -> CTRL&=~SysTick_CTRL_ENABLE_Msk;  //ï¿½Ø±Õ¼ï¿½ï¿½ï¿½ï¿½ï¿½
+	SysTick -> VAL = 0x00;                     //ï¿½ï¿½Õ¼ï¿½ï¿½ï¿½ï¿½ï¿½	 
 }
 
  
 /**
   * @brief  delay time ms
   * @param  None
-  * @retval SysTick -> LOADÎª24Î»¼Ä´æÆ÷£¬ËùÒÔ×î´óÑÓÊ±Îª
+  * @retval SysTick -> LOADÎª24Î»ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±Îª
   *         nms <= 0xffffff*8*1000/SYSCLK  (Hz)
-  *         ÔÚ72MHzÌõ¼þÏÂ£¬nms <= 1864
+  *         ï¿½ï¿½72MHzï¿½ï¿½ï¿½ï¿½ï¿½Â£ï¿½nms <= 1864
   */
 
 void delay_ms(u16 nms)
@@ -64,9 +63,9 @@ void delay_ms(u16 nms)
 	{
 		temp = SysTick -> CTRL;
 	}
-	while(temp & 0x01 && !(temp & (1 << 16))); //µÈ´ýÊ±¼äµ½´ï
-	SysTick -> CTRL&=~SysTick_CTRL_ENABLE_Msk;  //¹Ø±Õ¼ÆÊýÆ÷
-	SysTick -> VAL = 0x00;                     //Çå¿Õ¼ÆÊýÆ÷	 
+	while(temp & 0x01 && !(temp & (1 << 16))); //ï¿½È´ï¿½Ê±ï¿½äµ½ï¿½ï¿½
+	SysTick -> CTRL&=~SysTick_CTRL_ENABLE_Msk;  //ï¿½Ø±Õ¼ï¿½ï¿½ï¿½ï¿½ï¿½
+	SysTick -> VAL = 0x00;                     //ï¿½ï¿½Õ¼ï¿½ï¿½ï¿½ï¿½ï¿½	 
 }
 
  
@@ -85,7 +84,7 @@ void delay_s(u16 ns)
 	}
 }
 
-/*ÑÓÊ±*/
+/*ï¿½ï¿½Ê±*/
 void delay2(__IO u32 nCount)
 {
 	for(; nCount != 0; nCount--);

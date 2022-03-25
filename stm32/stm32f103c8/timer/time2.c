@@ -1,16 +1,15 @@
 /***************** 2021_07_18 ********************
-	*ÎÄ¼þÃû  £ºtime2.c
-	*ÃèÊö    £ºTIM2Çý¶¯ 1ms Ó¦ÓÃº¯Êý
-	*¿â°æ±¾  £ºST3.5.0
-	*×÷Õß    £ºxiaoboliu
+	*ï¿½Ä¼ï¿½ï¿½ï¿½  ï¿½ï¿½time2.c
+	*ï¿½ï¿½ï¿½ï¿½    ï¿½ï¿½TIM2ï¿½ï¿½ï¿½ï¿½ 1ms Ó¦ï¿½Ãºï¿½ï¿½ï¿½
+	*ï¿½ï¿½æ±¾  ï¿½ï¿½ST3.5.0
 **************************************************/
 #include "time2.h"
 
 /*
- * º¯ÊýÃû£ºTIM2_NVIC_Configuration
- * ÃèÊö  £ºTIM2ÖÐ¶ÏÓÅÏÈ¼¶ÅäÖÃ
- * ÊäÈë  £ºÎÞ
- * Êä³ö  £ºÎÞ	
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½TIM2_NVIC_Configuration
+ * ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½TIM2ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½È¼ï¿½ï¿½ï¿½ï¿½ï¿½
+ * ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½
+ * ï¿½ï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½	
  */
 void TIM2_NVIC_Configuration(void)
 {
@@ -25,22 +24,22 @@ void TIM2_NVIC_Configuration(void)
 }
 
 
-/*TIM_Period--1000   TIM_Prescaler--71 -->ÖÐ¶ÏÖÜÆÚÎª1ms*/
+/*TIM_Period--1000   TIM_Prescaler--71 -->ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½Îª1ms*/
 void TIM2_Configuration(void)
 {
     TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
     RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2 , ENABLE);
     TIM_DeInit(TIM2);
-    TIM_TimeBaseStructure.TIM_Period= 1000-1;		 							/* ×Ô¶¯ÖØ×°ÔØ¼Ä´æÆ÷ÖÜÆÚµÄÖµ(¼ÆÊýÖµ) */
-    /* ÀÛ¼Æ TIM_Period¸öÆµÂÊºó²úÉúÒ»¸ö¸üÐÂ»òÕßÖÐ¶Ï */
-    TIM_TimeBaseStructure.TIM_Prescaler= 72 - 1;				      /* Ê±ÖÓÔ¤·ÖÆµÊý 72M/72 */
-    TIM_TimeBaseStructure.TIM_ClockDivision=TIM_CKD_DIV1; 		/* ²ÉÑù·ÖÆµ */
-    TIM_TimeBaseStructure.TIM_CounterMode=TIM_CounterMode_Up; /* ÏòÉÏ¼ÆÊýÄ£Ê½ */
+    TIM_TimeBaseStructure.TIM_Period= 1000-1;		 							/* ï¿½Ô¶ï¿½ï¿½ï¿½×°ï¿½Ø¼Ä´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½Öµ(ï¿½ï¿½ï¿½ï¿½Öµ) */
+    /* ï¿½Û¼ï¿½ TIM_Periodï¿½ï¿½Æµï¿½Êºï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Â»ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ */
+    TIM_TimeBaseStructure.TIM_Prescaler= 72 - 1;				      /* Ê±ï¿½ï¿½Ô¤ï¿½ï¿½Æµï¿½ï¿½ 72M/72 */
+    TIM_TimeBaseStructure.TIM_ClockDivision=TIM_CKD_DIV1; 		/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æµ */
+    TIM_TimeBaseStructure.TIM_CounterMode=TIM_CounterMode_Up; /* ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½Ä£Ê½ */
     TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);
-    TIM_ClearFlag(TIM2, TIM_FLAG_Update);							    		/* Çå³ýÒç³öÖÐ¶Ï±êÖ¾ */
+    TIM_ClearFlag(TIM2, TIM_FLAG_Update);							    		/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶Ï±ï¿½Ö¾ */
     TIM_ITConfig(TIM2,TIM_IT_Update,ENABLE);
-    TIM_Cmd(TIM2, ENABLE);																		/* ¿ªÆôÊ±ÖÓ */
+    TIM_Cmd(TIM2, ENABLE);																		/* ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ */
     
-    RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2 , DISABLE);		/*ÏÈ¹Ø±ÕµÈ´ýÊ¹ÓÃ*/    
+    RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2 , DISABLE);		/*ï¿½È¹Ø±ÕµÈ´ï¿½Ê¹ï¿½ï¿½*/    
 }
 /******************* (C) COPYRIGHT 2012 WildFire Team *****END OF FILE************/

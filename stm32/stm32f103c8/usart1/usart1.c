@@ -1,22 +1,21 @@
 /*********************** 2015_12_22 *********************
- *ÎÄ¼þÃû  £ºusart1.c
- *ÃèÊö    £ºvoid USART1_Config(void)    //´®¿ÚÅäÖÃ
-            int fputc(int ch, FILE *f)  //printfº¯ÊýÖØ¶¨Ïò
-            void USART1_printf(USART_TypeDef* USARTx, uint8_t *Data,...) //ÀàËÆprintf
- *Ó²¼þÁ¬½Ó£º
- *¿â°æ±¾  £ºST3.5.0¡¢
- *×÷Õß    £ºxiaoboliu
+ *ï¿½Ä¼ï¿½ï¿½ï¿½  ï¿½ï¿½usart1.c
+ *ï¿½ï¿½ï¿½ï¿½    ï¿½ï¿½void USART1_Config(void)    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            int fputc(int ch, FILE *f)  //printfï¿½ï¿½ï¿½ï¿½ï¿½Ø¶ï¿½ï¿½ï¿½
+            void USART1_printf(USART_TypeDef* USARTx, uint8_t *Data,...) //ï¿½ï¿½ï¿½ï¿½printf
+ *Ó²ï¿½ï¿½ï¿½ï¿½ï¿½Ó£ï¿½
+ *ï¿½ï¿½æ±¾  ï¿½ï¿½ST3.5.0ï¿½ï¿½
  *********************************************************/
 #include "usart1.h"
 #include "stdarg.h"
 /*
-**º¯ÊýÃû£ºUSART1_Config()
-**×÷  ÓÃ£º1.Ê¹ÄÜ´®¿Ú1µÄÊ±ÖÓ
-          2.ÅäÖÃusart1µÄI/O
-		      3.ÅäÖÃusart1µÄ¹¤×÷Ä£Ê½£º²¨ÌØÂÊ115200¡¢8¸öÊý¾ÝÎ»¡¢
-		        1¸öÍ£Ö¹Î»¡¢ÎÞÓ²¼þÁ÷¿ØÖÆ£»¼´115200 8-N-1
-**µ÷  ÓÃ£ºÍâ²¿µ÷ÓÃ
-**×÷  Õß£ºxiaoboliu
+**ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½USART1_Config()
+**ï¿½ï¿½  ï¿½Ã£ï¿½1.Ê¹ï¿½Ü´ï¿½ï¿½ï¿½1ï¿½ï¿½Ê±ï¿½ï¿½
+          2.ï¿½ï¿½ï¿½ï¿½usart1ï¿½ï¿½I/O
+		      3.ï¿½ï¿½ï¿½ï¿½usart1ï¿½Ä¹ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½115200ï¿½ï¿½8ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
+		        1ï¿½ï¿½Í£Ö¹Î»ï¿½ï¿½ï¿½ï¿½Ó²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ£ï¿½ï¿½ï¿½115200 8-N-1
+**ï¿½ï¿½  ï¿½Ã£ï¿½ï¿½â²¿ï¿½ï¿½ï¿½ï¿½
+**ï¿½ï¿½  ï¿½ß£ï¿½xiaoboliu
 */
 
 void USART1_Config(void)
@@ -31,36 +30,36 @@ void USART1_Config(void)
 	/* USART1 GPIO config */
 	/* Configure USART1 Tx(PA.09) as alternate function pushpull */
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;  //¸´ÓÃÍÆÍì
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
 	/* Configure USART1 Rx(PA.10) as input floating */
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING; //¸¡¿ÕÊäÈë
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
 	
 	/* USART1 mode config */
-	//USART_ClockInitStructure.USART_Clock = USART_Clock_Disable;     //½ûÖ¹USARTÊ±ÖÓ
-	//USART_ClockInitStructure.USART_CPOL = USART_CPOL_Low;           //Ê±ÖÓ¼«ÐÔµÍ
-	//USART_ClockInitStructure.USART_CPHA = USART_CPHA_2Edge;         //µÚ2¸ö±ßÑØ²¶»ñÊý¾Ý
-	//USART_ClockInitStructure.USART_LastBit = USART_LastBit_Disable; //×îºóÒ»Î»Êý¾ÝµÄÊ±ÖÓÂö³å²»´ÓSCLKÊä³ö
+	//USART_ClockInitStructure.USART_Clock = USART_Clock_Disable;     //ï¿½ï¿½Ö¹USARTÊ±ï¿½ï¿½
+	//USART_ClockInitStructure.USART_CPOL = USART_CPOL_Low;           //Ê±ï¿½Ó¼ï¿½ï¿½Ôµï¿½
+	//USART_ClockInitStructure.USART_CPHA = USART_CPHA_2Edge;         //ï¿½ï¿½2ï¿½ï¿½ï¿½ï¿½ï¿½Ø²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//USART_ClockInitStructure.USART_LastBit = USART_LastBit_Disable; //ï¿½ï¿½ï¿½Ò»Î»ï¿½ï¿½ï¿½Ýµï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½å²»ï¿½ï¿½SCLKï¿½ï¿½ï¿½
 	
-	USART_InitStructure.USART_BaudRate = 115200 ;                      //²¨ÌØÂÊÉèÖÃ
-	USART_InitStructure.USART_WordLength = USART_WordLength_8b;       //Ò»¸öÖ¡µÄÊý¾ÝÎ»£¬8 or 9
-	USART_InitStructure.USART_StopBits = USART_StopBits_1;            //Í£Ö¹Î»ÊýÄ¿,1 or 0.5 or 2 or 1.5
-	USART_InitStructure.USART_Parity = USART_Parity_No;               //ÅäÖÃÆæÅ¼Ð£ÑéÎ»,NoÊ§ÄÜ,EvenÅ¼Ä£Ê½,OddÆæÄ£Ê½
-	USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;  //Ó²¼þ¿ØÖÆÁ÷Ê§ÄÜ
-	USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;   //½ÓÊÕÊ¹ÄÜ£¬·¢ËÍÊ¹ÄÜ
+	USART_InitStructure.USART_BaudRate = 115200 ;                      //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	USART_InitStructure.USART_WordLength = USART_WordLength_8b;       //Ò»ï¿½ï¿½Ö¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½8 or 9
+	USART_InitStructure.USART_StopBits = USART_StopBits_1;            //Í£Ö¹Î»ï¿½ï¿½Ä¿,1 or 0.5 or 2 or 1.5
+	USART_InitStructure.USART_Parity = USART_Parity_No;               //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¼Ð£ï¿½ï¿½Î»,NoÊ§ï¿½ï¿½,EvenÅ¼Ä£Ê½,Oddï¿½ï¿½Ä£Ê½
+	USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;  //Ó²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½
+	USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;   //ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½
 	USART_Init(USART1, &USART_InitStructure);
-	USART_Cmd(USART1, ENABLE);                                        //Ê¹ÄÜUSART1
+	USART_Cmd(USART1, ENABLE);                                        //Ê¹ï¿½ï¿½USART1
 }
 
 
 /*
-**º¯ÊýÃû£ºfputc
-**×÷  ÓÃ£ºÖØ¶¨Ïòc¿âº¯Êýprintfµ½USART1
-**µ÷  ÓÃ£ºÍâ²¿µ÷ÓÃ
-**×÷  Õß£ºxiaoboliu
+**ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½fputc
+**ï¿½ï¿½  ï¿½Ã£ï¿½ï¿½Ø¶ï¿½ï¿½ï¿½cï¿½âº¯ï¿½ï¿½printfï¿½ï¿½USART1
+**ï¿½ï¿½  ï¿½Ã£ï¿½ï¿½â²¿ï¿½ï¿½ï¿½ï¿½
+**ï¿½ï¿½  ï¿½ß£ï¿½xiaoboliu
 */	
 int fputc(int ch, FILE *f)
 {
@@ -71,14 +70,14 @@ int fputc(int ch, FILE *f)
 
 
 /*
-**º¯ÊýÃû£ºitoa
-**Ãè  Êö£º½«ÕûÐÎÊý¾Ý×ª»»³É×Ö·û´®
-**Êä  Èë£º-radix = 10 ±íÊ¾10½øÖÆ£¬ÆäËû½á¹ûÎª0
-          -valu  Òª×ª»»µÄÕûÐÎÊý
-          -buf ×ª»»ºóµÄ×Ö·û´®
-**Êä  ³ö£ºÎÞ
-**·µ  »Ø£ºÎÞ
-**µ÷  ÓÃ£º±»USART1¡ª¡ªprintf()µ÷ÓÃ
+**ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½itoa
+**ï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
+**ï¿½ï¿½  ï¿½ë£º-radix = 10 ï¿½ï¿½Ê¾10ï¿½ï¿½ï¿½Æ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îª0
+          -valu  Òª×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+          -buf ×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
+**ï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+**ï¿½ï¿½  ï¿½Ø£ï¿½ï¿½ï¿½
+**ï¿½ï¿½  ï¿½Ã£ï¿½ï¿½ï¿½USART1ï¿½ï¿½ï¿½ï¿½printf()ï¿½ï¿½ï¿½ï¿½
 */
 static char *itoa(int value, char *string, int radix)
 {
@@ -124,15 +123,15 @@ static char *itoa(int value, char *string, int radix)
 
 
 /*
-**º¯ÊýÃû£ºUSART1_printf
-**Ãè  Êö£º¸ñÊ½»¯Êä³ö£¬ÀàËÆÓÚC¿âÖÐµÄprintf£¬µ«ÕâÀïÃ»ÓÐÓÃµ½C¿â
-**Êä  Èë£º-USARTx ´®¿ÚÍ¨µÀ£¬ÕâÀïÓÃµ½USART1
-**        -Data   Òª·¢ËÍµ½´®¿ÚµÄÄÚÈÝµÄÖ¸Õë
-**			  -...    ÆäËû²ÎÊý
-**Êä  ³ö£ºÎÞ
-**·µ  »Ø£ºÎÞ
-**µ÷  ÓÃ£ºÍâ²¿µ÷ÓÃ
-**µäÐÍÓ¦ÓÃ£ºUSART1_printf(USART1, "\r\n this is a demo \r\n");
+**ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½USART1_printf
+**ï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½Ðµï¿½printfï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ãµï¿½Cï¿½ï¿½
+**ï¿½ï¿½  ï¿½ë£º-USARTx ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½USART1
+**        -Data   Òªï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½Ýµï¿½Ö¸ï¿½ï¿½
+**			  -...    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+**ï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+**ï¿½ï¿½  ï¿½Ø£ï¿½ï¿½ï¿½
+**ï¿½ï¿½  ï¿½Ã£ï¿½ï¿½â²¿ï¿½ï¿½ï¿½ï¿½
+**ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½Ã£ï¿½USART1_printf(USART1, "\r\n this is a demo \r\n");
             USART1_printf(USART1, "\r\n %d \r\n", i);
 						USART1_printf(USART1, "\r\n %s \r\n", j);
 */
@@ -144,17 +143,17 @@ void USART1_printf(USART_TypeDef* USARTx, uint8_t *Data,...)
 	char buf[16];
 	va_list ap;
 	va_start(ap, Data);
-		while(*Data != 0)     //ÅÐ¶ÏÊÇ·ñµ½´ï×Ö·û´®½áÊø·û
+		while(*Data != 0)     //ï¿½Ð¶ï¿½ï¿½Ç·ñµ½´ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		{
 			if(*Data == 0x5c)   //'\'
 			{
 				switch(*++Data)
 				{
-					case 'r':                       //»Ø³µ·û
+					case 'r':                       //ï¿½Ø³ï¿½ï¿½ï¿½
 						USART_SendData(USARTx, 0x0d);
 					  Data ++;
 					  break;
-					case 'n':                       //»»ÐÐ·û
+					case 'n':                       //ï¿½ï¿½ï¿½Ð·ï¿½
 						USART_SendData(USARTx, 0x0a);  
 					  Data ++;
 					  break;
@@ -167,7 +166,7 @@ void USART1_printf(USART_TypeDef* USARTx, uint8_t *Data,...)
 			{
 				switch(*++Data)
 				{
-					case 's':         //×Ö·û´®
+					case 's':         //ï¿½Ö·ï¿½ï¿½ï¿½
 						s = va_arg(ap, const char *);
 					for(; *s; s++)
 					{
@@ -177,7 +176,7 @@ void USART1_printf(USART_TypeDef* USARTx, uint8_t *Data,...)
 					Data++;
 					break;
 					
-					case 'd':         //Ê®½øÖÆ
+					case 'd':         //Ê®ï¿½ï¿½ï¿½ï¿½
 					d = va_arg(ap, int);
 					itoa(d, buf, 10);
 					for(s = buf; *s; s++)

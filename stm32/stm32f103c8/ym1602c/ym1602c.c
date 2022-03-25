@@ -1,21 +1,19 @@
 /*********************** 2021_04_04 *********************
- *ÎÄ¼þÃû  £ºym1602c.c
- *ÃèÊö    £ºgpio Ó¦ÓÃº¯Êý¿â
- *Ó²¼þÁ¬½Ó£º----------------
-          
- *¿â°æ±¾  £ºST3.5.0
- *×÷Õß    £ºxiaoboliu
+ *ï¿½Ä¼ï¿½ï¿½ï¿½  ï¿½ï¿½ym1602c.c
+ *ï¿½ï¿½ï¿½ï¿½    ï¿½ï¿½gpio Ó¦ï¿½Ãºï¿½ï¿½ï¿½ï¿½ï¿½
+ *Ó²ï¿½ï¿½ï¿½ï¿½ï¿½Ó£ï¿½----------------
+ *ï¿½ï¿½æ±¾  ï¿½ï¿½ST3.5.0
  *********************************************************/
 #include "ym1602c.h"
  
-// ÏÔÊ¾ÆÁÃüÁîÐ´Èëº¯Êý
+// ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ëº¯ï¿½ï¿½
 void LCD_write_com(unsigned char com)
 {
 	RS_CLR;
 	RW_CLR;
 	EN_SET;
 	DATA_OUT = com;
-	delay_us(40);   // ¹Ù·½¸ø³öµÄÊ±¼äÊÇ×îµÍ40us
+	delay_us(40);   // ï¿½Ù·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½40us
 	EN_CLR;
 }
 
@@ -25,7 +23,7 @@ void LCD_write_Data(unsigned char data)
 	RW_CLR;
 	EN_SET;
 	DATA_OUT = data;
-	delay_us(40);   // ¹Ù·½¸ø³öµÄÊ±¼äÊÇ×îµÍ40us
+	delay_us(40);   // ï¿½Ù·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½40us
 	EN_CLR;
 }
 
@@ -34,7 +32,7 @@ void LCD_clear(void)
 	LCD_write_com(0x01);
 	delay_ms(5);
 }
-// Ð´Èë×Ö·û´®
+// Ð´ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
 void LCD_write_str(unsigned char x,unsigned char y,unsigned char *s)
 {
 	if (y == 0) 
@@ -47,7 +45,7 @@ void LCD_write_str(unsigned char x,unsigned char y,unsigned char *s)
     s++;
   }
 }
-// Ð´Èëµ¥¸ö×Ö·û(ÊäÈë×Ö·ûµÄ ASCII)
+// Ð´ï¿½ëµ¥ï¿½ï¿½ï¿½Ö·ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ ASCII)
 void LCD_write_char(unsigned char x,unsigned char y,unsigned char Data) 
 {     
   if (y == 0)
@@ -60,20 +58,20 @@ void LCD_write_char(unsigned char x,unsigned char y,unsigned char Data)
 
 void LCD_init(void) 
 {
-  LCD_write_com(0x38);    /*ÏÔÊ¾Ä£Ê½ÉèÖÃ*/ 
+  LCD_write_com(0x38);    /*ï¿½ï¿½Ê¾Ä£Ê½ï¿½ï¿½ï¿½ï¿½*/ 
   delay_ms(5); 
 //  LCD_write_com(0x38); 
 //  delay_ms(5);
 //  LCD_write_com(0x38); 
 //  Ddelay_ms(5);
 //  LCD_write_com(0x38);  
-//  LCD_write_com(0x08);    /*ÏÔÊ¾¹Ø±Õ*/ 
+//  LCD_write_com(0x08);    /*ï¿½ï¿½Ê¾ï¿½Ø±ï¿½*/ 
 //	delay_ms(5);
-//  LCD_write_com(0x01);    /*ÏÔÊ¾ÇåÆÁ*/ 
+//  LCD_write_com(0x01);    /*ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½*/ 
 //	delay_ms(5);
-  LCD_write_com(0x06);    /*ÏÔÊ¾¹â±êÒÆ¶¯ÉèÖÃ*/ 
+  LCD_write_com(0x06);    /*ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½*/ 
   delay_ms(5);
-  LCD_write_com(0x0C);    /*ÏÔÊ¾¿ª¼°¹â±êÉèÖÃ*/
+  LCD_write_com(0x0C);    /*ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 	delay_ms(5);
 }
 

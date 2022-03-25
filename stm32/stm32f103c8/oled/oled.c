@@ -1,14 +1,13 @@
 /**
   ******************************************************************************
   * @file    oled.c
-  * @author  xiaobo
   * @version V3.5.0
   * @date    20191222
   * @brief   0.69 inch OLED configuration file. IIC format
 	*          GND   
   *          VCC   5V or 3.3V
-  *          SCL   PB6£¨SCL£©
-  *          SDA   PB7£¨SDA£© 
+  *          SCL   PB6ï¿½ï¿½SCLï¿½ï¿½
+  *          SDA   PB7ï¿½ï¿½SDAï¿½ï¿½ 
   ******************************************************************************
 	* OLED video memory format:
   *                          [0]0 1 2 3 ... 127	
@@ -217,9 +216,9 @@ void OLED_Clear(void)
 	unsigned char i,n;		    
 	for(i=0;i<8;i++)  
 	{  
-		OLED_WR_Byte (0xb0+i,OLED_CMD);    //ÉèÖÃÒ³µØÖ·£¨0~7£©
-		OLED_WR_Byte (0x00,OLED_CMD);      //ÉèÖÃÏÔÊ¾Î»ÖÃ¡ªÁÐµÍµØÖ·
-		OLED_WR_Byte (0x10,OLED_CMD);      //ÉèÖÃÏÔÊ¾Î»ÖÃ¡ªÁÐ¸ßµØÖ·   
+		OLED_WR_Byte (0xb0+i,OLED_CMD);    //ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½Ö·ï¿½ï¿½0~7ï¿½ï¿½
+		OLED_WR_Byte (0x00,OLED_CMD);      //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾Î»ï¿½Ã¡ï¿½ï¿½ÐµÍµï¿½Ö·
+		OLED_WR_Byte (0x10,OLED_CMD);      //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾Î»ï¿½Ã¡ï¿½ï¿½Ð¸ßµï¿½Ö·   
 		for(n=0;n<128;n++)
 		{
 		  OLED_WR_Byte(0,OLED_DATA);
@@ -235,7 +234,7 @@ void OLED_Clear(void)
 void OLED_ShowChar(unsigned char x,unsigned char y,unsigned char chr,unsigned char Char_Size)
 {      	
 	unsigned char c=0,i=0;	
-	c = chr-' ';         //µÃµ½Æ«ÒÆºóµÄÖµ			
+	c = chr-' ';         //ï¿½Ãµï¿½Æ«ï¿½Æºï¿½ï¿½Öµ			
 	if(x > Max_Column-1)
   {
 	  x = 0;
@@ -346,7 +345,7 @@ void OLED_ShowChinese(unsigned char x,unsigned char y,unsigned char no)
   * @param  (x0,y0),(x1,y1),BMP[]
   * @retval None
   */
-/***********¹¦ÄÜÃèÊö£ºÏÔÊ¾ÏÔÊ¾BMPÍ¼Æ¬128¡Á64ÆðÊ¼µã×ø±ê(x,y),xµÄ·¶Î§0¡«127£¬yÎªÒ³µÄ·¶Î§0¡«7*****************/
+/***********ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Ê¾BMPÍ¼Æ¬128ï¿½ï¿½64ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(x,y),xï¿½Ä·ï¿½Î§0ï¿½ï¿½127ï¿½ï¿½yÎªÒ³ï¿½Ä·ï¿½Î§0ï¿½ï¿½7*****************/
 void OLED_DrawBMP(unsigned char x0, unsigned char y0,unsigned char x1, unsigned char y1,unsigned char BMP[])
 { 	
  unsigned int j=0;
@@ -378,14 +377,14 @@ void OLED_Init(void)
  	
 	RCC_APB2PeriphClockCmd(IIC_SCL_CLK, ENABLE);	 
 	GPIO_InitStructure.GPIO_Pin = IIC_SCL_PIN;	 
- 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 		 //ÍÆÍìÊä³ö
+ 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 		 //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
  	GPIO_Init(IIC_SCL_PORT, &GPIO_InitStructure);
  	GPIO_SetBits(IIC_SCL_PORT,IIC_SCL_PIN);	
 	
 	RCC_APB2PeriphClockCmd(IIC_SDA_CLK, ENABLE);	 
 	GPIO_InitStructure.GPIO_Pin = IIC_SDA_PIN;	 
- 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 		 //ÍÆÍìÊä³ö
+ 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 		 //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
  	GPIO_Init(IIC_SDA_PORT, &GPIO_InitStructure);
  	GPIO_SetBits(IIC_SDA_PORT,IIC_SDA_PIN);		

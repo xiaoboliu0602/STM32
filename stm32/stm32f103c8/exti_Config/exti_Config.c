@@ -1,21 +1,20 @@
 /*********************** 2018_05_18 *********************
- *нд╪ЧцШ  ё╨exti_Config.c
- *цХйЖ    ё╨жп╤оеДжц╨╞йЩ
- *с╡╪Ча╛╫сё╨PXиХн╙мБ╡©жп╤о
- *©Б╟Ф╠╬  ё╨ST3.5.0
- *вВуъ    ё╨xiaoboliu
+ *О©╫д╪О©╫О©╫О©╫  О©╫О©╫exti_Config.c
+ *О©╫О©╫О©╫О©╫    О©╫О©╫О©╫п╤О©╫О©╫О©╫О©╫ц╨О©╫О©╫О©╫
+ *с╡О©╫О©╫О©╫О©╫О©╫сёО©╫PXО©╫О©╫н╙О©╫Б╡©О©╫п╤О©╫
+ *О©╫О©╫Ф╠╬  О©╫О©╫ST3.5.0
  *********************************************************/
 
  #include "exti_Config.h"
 
- static void NVIC_Configuration(void); //еДжцг╤лвоРа©жп╤о©ьжффВ
+ static void NVIC_Configuration(void); //О©╫О©╫О©╫О©╫г╤О©╫О©╫О©╫О©╫О©╫О©╫О©╫п╤о©О©╫О©╫О©╫О©╫О©╫
  
 /*
- * ╨╞йЩцШё╨EXTI_PX_Config
- * цХйЖ  ё╨еДжцPXн╙оъжп╤о©зё╛иХжцжп╤осеох╪╤
- * йДхК  ё╨нч
- * йДЁЖ  ё╨нч
- * ╣Всц  ё╨мБ╡©╣Всц
+ * О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫EXTI_PX_Config
+ * О©╫О©╫О©╫О©╫  О©╫О©╫О©╫О©╫О©╫О©╫PXн╙О©╫О©╫О©╫п╤о©зёО©╫О©╫О©╫О©╫О©╫О©╫п╤О©╫О©╫О©╫О©╫х╪О©╫
+ * О©╫О©╫О©╫О©╫  О©╫О©╫О©╫О©╫
+ * О©╫О©╫О©╫  О©╫О©╫О©╫О©╫
+ * О©╫О©╫О©╫О©╫  О©╫О©╫О©╫Б╡©О©╫О©╫О©╫О©╫
  */
  
  void EXTI_PX_Config(void)
@@ -28,86 +27,86 @@
 	 
 	 /* config the NVIC */
 	 NVIC_Configuration();
-/*--------------------------- PXеДжц ----------------------------------*/ 
+/*--------------------------- PXО©╫О©╫О©╫О©╫ ----------------------------------*/ 
 	 /* EXTI line gpio config */
 	 //GPIO_InitStructure.GPIO_Pin = PX_INT_GPIO_PIN;
-   //GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;	 //╦║©уйДхК
-	 //GPIO_Init(PX_INT_GPIO_PORT, &GPIO_InitStructure);       //╣Всц╨╞йЩЁУй╪╩╞
+   //GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;	 //О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	 //GPIO_Init(PX_INT_GPIO_PORT, &GPIO_InitStructure);       //О©╫О©╫О©╫ц╨О©╫О©╫О©╫О©╫О©╫й╪О©╫О©╫
 	 
 	 /* EXTI line mode config */
-	 //GPIO_EXTILineConfig(PX_INT_EXTI_PORTSOURCE, PX_INT_EXTI_PINSOURCE);      //я║тЯ╧э╫ен╙мБ╡©жп╤ооъ
-	 //EXTI_InitStructure.EXTI_Line = PX_INT_EXTI_LINE;                         //я║тЯмБ╡©жп╤ооъ
-	 //EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;                      //иХжцEXTIоъб╥н╙жп╤огКгС
-	 //EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Event;                        //иХжцEXTIоъб╥н╙йб╪ЧгКгС
-	 //EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;                //иХжцйДхКоъб╥об╫╣яьн╙жп╤огКгС
-	 //EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;                 //иХжцйДхКоъб╥иоиЩяьн╙жп╤огКгС
-	 //EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising_Falling;         //иХжцйДхКоъб╥иоиЩ╨моб╫╣яьн╙жп╤огКгС
+	 //GPIO_EXTILineConfig(PX_INT_EXTI_PORTSOURCE, PX_INT_EXTI_PINSOURCE);      //я║О©╫О©╫э╫О©╫н╙О©╫Б╡©О©╫п╤О©╫О©╫О©╫
+	 //EXTI_InitStructure.EXTI_Line = PX_INT_EXTI_LINE;                         //я║О©╫О©╫О©╫Б╡©О©╫п╤О©╫О©╫О©╫
+	 //EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;                      //О©╫О©╫О©╫О©╫EXTIО©╫О©╫б╥н╙О©╫п╤О©╫О©╫О©╫О©╫О©╫
+	 //EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Event;                        //О©╫О©╫О©╫О©╫EXTIО©╫О©╫б╥н╙О©╫б╪О©╫О©╫О©╫О©╫О©╫
+	 //EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;                //О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫б╥О©╫б╫О©╫О©╫О©╫н╙О©╫п╤О©╫О©╫О©╫О©╫О©╫
+	 //EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;                 //О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫б╥О©╫О©╫О©╫О©╫О©╫О©╫н╙О©╫п╤О©╫О©╫О©╫О©╫О©╫
+	 //EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising_Falling;         //О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫б╥О©╫О©╫О©╫О©╫О©╫О©╫О©╫б╫О©╫О©╫О©╫н╙О©╫п╤О©╫О©╫О©╫О©╫О©╫
 	 
-	 //EXTI_InitStructure.EXTI_LineCmd = ENABLE;   //й╧дэмБ╡©жп╤о
+	 //EXTI_InitStructure.EXTI_LineCmd = ENABLE;   //й╧О©╫О©╫О©╫Б╡©О©╫п╤О©╫
 	 //EXTI_Init(&EXTI_InitStructure);
-/*---------------------------PXеДжц end----------------------------------*/  
+/*---------------------------PXО©╫О©╫О©╫О©╫ end----------------------------------*/  
 	 
-/*--------------------------- PX2еДжц ----------------------------------*/ 
+/*--------------------------- PX2О©╫О©╫О©╫О©╫ ----------------------------------*/ 
 	 /* EXTI line gpio config */
 	 GPIO_InitStructure.GPIO_Pin = PX2_INT_GPIO_PIN;
-   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;	          //иою╜йДхК
-	 GPIO_Init(PX2_INT_GPIO_PORT, &GPIO_InitStructure);       //╣Всц╨╞йЩЁУй╪╩╞
+   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;	          //О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	 GPIO_Init(PX2_INT_GPIO_PORT, &GPIO_InitStructure);       //О©╫О©╫О©╫ц╨О©╫О©╫О©╫О©╫О©╫й╪О©╫О©╫
 	 
 	 /* EXTI line mode config */
-	 GPIO_EXTILineConfig(PX2_INT_EXTI_PORTSOURCE, PX2_INT_EXTI_PINSOURCE);      //я║тЯ╧э╫ен╙мБ╡©жп╤ооъ
-	 EXTI_InitStructure.EXTI_Line = PX2_INT_EXTI_LINE;                         //я║тЯмБ╡©жп╤ооъ
-	 EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;                      //иХжцEXTIоъб╥н╙жп╤огКгС
-	 //EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Event;                        //иХжцEXTIоъб╥н╙йб╪ЧгКгС
-	 EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;                //иХжцйДхКоъб╥об╫╣яьн╙жп╤огКгС
-	 //EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;                 //иХжцйДхКоъб╥иоиЩяьн╙жп╤огКгС
-	 //EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising_Falling;         //иХжцйДхКоъб╥иоиЩ╨моб╫╣яьн╙жп╤огКгС
+	 GPIO_EXTILineConfig(PX2_INT_EXTI_PORTSOURCE, PX2_INT_EXTI_PINSOURCE);      //я║О©╫О©╫э╫О©╫н╙О©╫Б╡©О©╫п╤О©╫О©╫О©╫
+	 EXTI_InitStructure.EXTI_Line = PX2_INT_EXTI_LINE;                         //я║О©╫О©╫О©╫Б╡©О©╫п╤О©╫О©╫О©╫
+	 EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;                      //О©╫О©╫О©╫О©╫EXTIО©╫О©╫б╥н╙О©╫п╤О©╫О©╫О©╫О©╫О©╫
+	 //EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Event;                        //О©╫О©╫О©╫О©╫EXTIО©╫О©╫б╥н╙О©╫б╪О©╫О©╫О©╫О©╫О©╫
+	 EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;                //О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫б╥О©╫б╫О©╫О©╫О©╫н╙О©╫п╤О©╫О©╫О©╫О©╫О©╫
+	 //EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;                 //О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫б╥О©╫О©╫О©╫О©╫О©╫О©╫н╙О©╫п╤О©╫О©╫О©╫О©╫О©╫
+	 //EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising_Falling;         //О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫б╥О©╫О©╫О©╫О©╫О©╫О©╫О©╫б╫О©╫О©╫О©╫н╙О©╫п╤О©╫О©╫О©╫О©╫О©╫
 	 
-	 EXTI_InitStructure.EXTI_LineCmd = ENABLE;   //й╧дэмБ╡©жп╤о
+	 EXTI_InitStructure.EXTI_LineCmd = ENABLE;   //й╧О©╫О©╫О©╫Б╡©О©╫п╤О©╫
 	 EXTI_Init(&EXTI_InitStructure);
-/*---------------------------PX2еДжц end----------------------------------*/  
+/*---------------------------PX2О©╫О©╫О©╫О©╫ end----------------------------------*/  
 		 
 	 
  }
  
 /*
- * ╨╞йЩцШё╨NVIC_Configuration
- * цХйЖ  ё╨еДжцг╤лвоРа©жп╤о©ьжффВNVIC
- * йДхК  ё╨нч
- * йДЁЖ  ё╨нч
- * ╣Всц  ё╨дз╡©╣Всц
+ * О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫NVIC_Configuration
+ * О©╫О©╫О©╫О©╫  О©╫О©╫О©╫О©╫О©╫О©╫г╤О©╫О©╫О©╫О©╫О©╫О©╫О©╫п╤о©О©╫О©╫О©╫О©╫О©╫NVIC
+ * О©╫О©╫О©╫О©╫  О©╫О©╫О©╫О©╫
+ * О©╫О©╫О©╫  О©╫О©╫О©╫О©╫
+ * О©╫О©╫О©╫О©╫  О©╫О©╫О©╫з╡О©╫О©╫О©╫О©╫О©╫
  */
  
  static void NVIC_Configuration(void)
  {
 	 NVIC_InitTypeDef NVIC_InitStructure;
 	 
-	 /* иХжцсеох╪╤╥жвИё╛ж╩дэиХжцр╩╢н */
-	 //NVIC_PriorityGroupConfig(NVIC_PriorityGroup_0);  //иХжцсеох╪╤╥жвИё╨оху╪сеох╪╤0н╩ё╛╢ссеох╪╤4н╩
-	 NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);    //иХжцсеох╪╤╥жвИё╨оху╪сеох╪╤1н╩ё╛╢ссеох╪╤3н╩
-	 //NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);  //иХжцсеох╪╤╥жвИё╨оху╪сеох╪╤2н╩ё╛╢ссеох╪╤2н╩
-	 //NVIC_PriorityGroupConfig(NVIC_PriorityGroup_3);  //иХжцсеох╪╤╥жвИё╨оху╪сеох╪╤3н╩ё╛╢ссеох╪╤1н╩
-	 //NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);  //иХжцсеох╪╤╥жвИё╨оху╪сеох╪╤4н╩ё╛╢ссеох╪╤0н╩
+	 /* О©╫О©╫О©╫О©╫О©╫О©╫О©╫х╪О©╫О©╫О©╫О©╫Иё╛ж╩О©╫О©╫О©╫О©╫О©╫О©╫р╩О©╫О©╫ */
+	 //NVIC_PriorityGroupConfig(NVIC_PriorityGroup_0);  //О©╫О©╫О©╫О©╫О©╫О©╫О©╫х╪О©╫О©╫О©╫О©╫Иё╨О©╫О©╫у╪О©╫О©╫О©╫х╪О©╫0н╩О©╫О©╫О©╫О©╫О©╫О©╫О©╫х╪О©╫4н╩
+	 NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);    //О©╫О©╫О©╫О©╫О©╫О©╫О©╫х╪О©╫О©╫О©╫О©╫Иё╨О©╫О©╫у╪О©╫О©╫О©╫х╪О©╫1н╩О©╫О©╫О©╫О©╫О©╫О©╫О©╫х╪О©╫3н╩
+	 //NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);  //О©╫О©╫О©╫О©╫О©╫О©╫О©╫х╪О©╫О©╫О©╫О©╫Иё╨О©╫О©╫у╪О©╫О©╫О©╫х╪О©╫2н╩О©╫О©╫О©╫О©╫О©╫О©╫О©╫х╪О©╫2н╩
+	 //NVIC_PriorityGroupConfig(NVIC_PriorityGroup_3);  //О©╫О©╫О©╫О©╫О©╫О©╫О©╫х╪О©╫О©╫О©╫О©╫Иё╨О©╫О©╫у╪О©╫О©╫О©╫х╪О©╫3н╩О©╫О©╫О©╫О©╫О©╫О©╫О©╫х╪О©╫1н╩
+	 //NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);  //О©╫О©╫О©╫О©╫О©╫О©╫О©╫х╪О©╫О©╫О©╫О©╫Иё╨О©╫О©╫у╪О©╫О©╫О©╫х╪О©╫4н╩О©╫О©╫О©╫О©╫О©╫О©╫О©╫х╪О©╫0н╩
 	 
 	 /* Configure */
-	 //NVIC_InitStructure.NVIC_IRQChannel = PX_INT_EXTI_IRQ;     //й╧дэмБ╡©жп╤ооъ
-	 //NVIC_InitStructure.NVIC_IRQChannel = EXTI0_IRQn;          //й╧дэмБ╡©жп╤ооъ0
-	 //NVIC_InitStructure.NVIC_IRQChannel = EXTI1_IRQn;          //й╧дэмБ╡©жп╤ооъ1
-	 //NVIC_InitStructure.NVIC_IRQChannel = EXTI2_IRQn;					 //й╧дэмБ╡©жп╤ооъ2
-	 //NVIC_InitStructure.NVIC_IRQChannel = EXTI3_IRQn;          //й╧дэмБ╡©жп╤ооъ3
-	 //NVIC_InitStructure.NVIC_IRQChannel = EXTI4_IRQn;          //й╧дэмБ╡©жп╤ооъ4
-	 //NVIC_InitStructure.NVIC_IRQChannel = EXTI15_10_IRQn;      //й╧дэмБ╡©жп╤ооъ15-10
+	 //NVIC_InitStructure.NVIC_IRQChannel = PX_INT_EXTI_IRQ;     //й╧О©╫О©╫О©╫Б╡©О©╫п╤О©╫О©╫О©╫
+	 //NVIC_InitStructure.NVIC_IRQChannel = EXTI0_IRQn;          //й╧О©╫О©╫О©╫Б╡©О©╫п╤О©╫О©╫О©╫0
+	 //NVIC_InitStructure.NVIC_IRQChannel = EXTI1_IRQn;          //й╧О©╫О©╫О©╫Б╡©О©╫п╤О©╫О©╫О©╫1
+	 //NVIC_InitStructure.NVIC_IRQChannel = EXTI2_IRQn;					 //й╧О©╫О©╫О©╫Б╡©О©╫п╤О©╫О©╫О©╫2
+	 //NVIC_InitStructure.NVIC_IRQChannel = EXTI3_IRQn;          //й╧О©╫О©╫О©╫Б╡©О©╫п╤О©╫О©╫О©╫3
+	 //NVIC_InitStructure.NVIC_IRQChannel = EXTI4_IRQn;          //й╧О©╫О©╫О©╫Б╡©О©╫п╤О©╫О©╫О©╫4
+	 //NVIC_InitStructure.NVIC_IRQChannel = EXTI15_10_IRQn;      //й╧О©╫О©╫О©╫Б╡©О©╫п╤О©╫О©╫О©╫15-10
 	 
-	 //NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;   //иХжцоху╪сеох╪╤0~15 сК╢су╪сеох╪╤╧╡у╪4н╩
+	 //NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;   //О©╫О©╫О©╫О©╫О©╫О©╫у╪О©╫О©╫О©╫х╪О©╫0~15 О©╫О©╫О©╫у╪О©╫О©╫О©╫х╪О©╫О©╫О©╫у╪4н╩
 	 	 
-	 //NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;          //иХжц╢су╪сеох╪╤0~15 сКоху╪сеох╪╤╧╡у╪4н╩
+	 //NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;          //О©╫О©╫О©╫ц╢О©╫у╪О©╫О©╫О©╫х╪О©╫0~15 О©╫О©╫О©╫О©╫у╪О©╫О©╫О©╫х╪О©╫О©╫О©╫у╪4н╩
 	 
 	 //NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 	 //NVIC_Init(&NVIC_InitStructure);
 	 
-	 /* еДжцPX2*/
+	 /* О©╫О©╫О©╫О©╫PX2*/
 	 NVIC_InitStructure.NVIC_IRQChannel = PX2_INT_EXTI_IRQ;
 	 
-	 NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;   //иХжцоху╪сеох╪╤0~15 сК╢су╪сеох╪╤╧╡у╪4н╩
+	 NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;   //О©╫О©╫О©╫О©╫О©╫О©╫у╪О©╫О©╫О©╫х╪О©╫0~15 О©╫О©╫О©╫у╪О©╫О©╫О©╫х╪О©╫О©╫О©╫у╪4н╩
 	 	 
 	 NVIC_InitStructure.NVIC_IRQChannelSubPriority = 2; 
 	 

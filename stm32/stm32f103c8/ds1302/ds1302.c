@@ -1,10 +1,9 @@
 /*********************** 2018_06_10 *********************
- *ÎÄ¼þÃû  £ºDS1302.c
- *ÃèÊö    £ºÊ±ÖÓDS1302Çý¶¯³ÌÐò
- *¿â°æ±¾  £ºST3.5.0
- *×÷Õß    £ºxiaoboliu
- *ËµÃ÷    £ºDS1302²ÉÓÃIOÄ£ÄâSPIµÄ·½Ê½
- *           LSB¸ñÊ½£¬ÉÏÉýÐ´£¬ÏÂ½µ¶Á
+ *ï¿½Ä¼ï¿½ï¿½ï¿½  ï¿½ï¿½DS1302.c
+ *ï¿½ï¿½ï¿½ï¿½    ï¿½ï¿½Ê±ï¿½ï¿½DS1302ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ *ï¿½ï¿½æ±¾  ï¿½ï¿½ST3.5.0
+ *Ëµï¿½ï¿½    ï¿½ï¿½DS1302ï¿½ï¿½ï¿½ï¿½IOÄ£ï¿½ï¿½SPIï¿½Ä·ï¿½Ê½
+ *           LSBï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½Â½ï¿½ï¿½ï¿½
  *********************************************************/
 #include "ds1302.h"
 #include "delay.h"
@@ -12,49 +11,49 @@
 TIME_TypeDef time;
 
 /**
- * @brief  ÅäÖÃGPIOºÍSPI½Ó¿Ú£¬ÓÃÓÚÁ¬½ÓDS1302
+ * @brief  ï¿½ï¿½ï¿½ï¿½GPIOï¿½ï¿½SPIï¿½Ó¿Ú£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½DS1302
  * @param  None
- * @retval DS1302_DIOÅäÖÃÎª¿ªÂ©Ä£Ê½£¬ÒÔ±ãÊµÏÖÕæÕýµÄË«ÏòIO¿Ú
+ * @retval DS1302_DIOï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Â©Ä£Ê½ï¿½ï¿½ï¿½Ô±ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë«ï¿½ï¿½IOï¿½ï¿½
  */
-//³õÊ¼»¯IO¿Ú
+//ï¿½ï¿½Ê¼ï¿½ï¿½IOï¿½ï¿½
 void DS1302_GPIO_Init(void)
 {
   GPIO_InitTypeDef  GPIO_InitStructure;
 
   RCC_APB2PeriphClockCmd(DS1302_CLOCK, ENABLE);
   GPIO_InitStructure.GPIO_Pin = DS1302_SCK|DS1302_DIO|DS1302_CE;
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; //ÍÆÍìÊä³ö
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
   GPIO_InitStructure.GPIO_Speed = GPIO_Speed_10MHz; 
   GPIO_Init(DS1302_PORT, &GPIO_InitStructure); 
 }
 
-//½«DS1302_DIOÉèÎªÊäÈë
+//ï¿½ï¿½DS1302_DIOï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½
 void Dio_In(void)
 {
   GPIO_InitTypeDef  GPIO_InitStructure;
   
   RCC_APB2PeriphClockCmd(DS1302_CLOCK, ENABLE);
   GPIO_InitStructure.GPIO_Pin = DS1302_DIO;
-  GPIO_InitStructure.GPIO_Mode =  GPIO_Mode_IPU;  //ÉÏÀ­ÊäÈë
+  GPIO_InitStructure.GPIO_Mode =  GPIO_Mode_IPU;  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
   GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
   GPIO_Init(DS1302_PORT, &GPIO_InitStructure);
 }
 
-//½«DS1302_DIOÉèÎªÊä³ö
+//ï¿½ï¿½DS1302_DIOï¿½ï¿½Îªï¿½ï¿½ï¿½
 void  DIO_Out(void)
 {
   GPIO_InitTypeDef  GPIO_InitStructure;
   RCC_APB2PeriphClockCmd(DS1302_CLOCK, ENABLE);
   GPIO_InitStructure.GPIO_Pin = DS1302_DIO;
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; //ÍÆÍìÊä³ö
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
   GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
   GPIO_Init(DS1302_PORT, &GPIO_InitStructure);
 }
 
 /**
-* @brief  Ð´Ò»¸öByteµ½DS1302
-* @param  dataÎªÒªÐ´ÈëµÄByte
-* @retval Ð´Ò»¸ö×Ö½ÚµÄÊý¾Ý SCKÉÏÉýÑØÐ´Êý¾Ý
+* @brief  Ð´Ò»ï¿½ï¿½Byteï¿½ï¿½DS1302
+* @param  dataÎªÒªÐ´ï¿½ï¿½ï¿½Byte
+* @retval Ð´Ò»ï¿½ï¿½ï¿½Ö½Úµï¿½ï¿½ï¿½ï¿½ï¿½ SCKï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½
 */
 void DS1302_WriteByte(u8 addr,u8 data)
 {
@@ -76,9 +75,9 @@ void DS1302_WriteByte(u8 addr,u8 data)
 } 
  
 /**
-* @brief  ´ÓDS1302SPI×ÜÏßÉÏ¶ÁÈ¡Ò»¸ö×Ö½Ú
-* @param  addrÎª¼Ä´æÆ÷µØÖ·
-* @retval ¶ÁÒ»¸ö×Ö½ÚµÄÊý¾Ý SCKÏÂ½µÑØ¶ÁÊý¾Ý
+* @brief  ï¿½ï¿½DS1302SPIï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½È¡Ò»ï¿½ï¿½ï¿½Ö½ï¿½
+* @param  addrÎªï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½Ö·
+* @retval ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö½Úµï¿½ï¿½ï¿½ï¿½ï¿½ SCKï¿½Â½ï¿½ï¿½Ø¶ï¿½ï¿½ï¿½ï¿½ï¿½
 */ 
 u8 DS1302_ReadByte(u8 addr)
 {
@@ -95,7 +94,7 @@ u8 DS1302_ReadByte(u8 addr)
     Coda=Coda>>1;
     Clr_Sclk();
   }
-  Dio_In();   //¶ÁÊý¾Ý
+  Dio_In();   //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
   Coda=0;
   for(i=0;i<8;i++)
   {   
@@ -110,8 +109,8 @@ u8 DS1302_ReadByte(u8 addr)
 }
 
 /**
-* @brief  ÏòÖ¸¶¨¼Ä´æÆ÷Ð´ÈëÒ»¸ö×Ö½ÚµÄÊý¾Ý
-* @param  addrÎª¼Ä´æÆ÷µØÖ·£¬dataÎªÐ´ÈëµÄÊý¾Ý
+* @brief  ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½Ð´ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö½Úµï¿½ï¿½ï¿½ï¿½ï¿½
+* @param  addrÎªï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½dataÎªÐ´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 * @retval 
 */ 
 void DS1302_WriteData(u8 addr,u8 data)
@@ -128,13 +127,13 @@ void DS1302_WriteData(u8 addr,u8 data)
 }
 
 /**
-* @brief  ³õÊ¼»¯Ê±¼ä
+* @brief  ï¿½ï¿½Ê¼ï¿½ï¿½Ê±ï¿½ï¿½
 * @param  
 * @retval 
 */ 
 void DS1302_Write(void)
 {
-	DS1302_WriteData(DS1302_WrProtect, 0x00); //¹ØÐ´±£»¤
+	DS1302_WriteData(DS1302_WrProtect, 0x00); //ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½
 	
 	DS1302_WriteData(DS1302_WrSec, time.sec);
 	DS1302_WriteData(DS1302_WrMin, time.min);
@@ -144,5 +143,5 @@ void DS1302_Write(void)
 	DS1302_WriteData(DS1302_WrYear, time.year);
 	DS1302_WriteData(DS1302_WrWeek, time.week);
 	
-	DS1302_WriteData(DS1302_WrProtect, 0x80); //¿ªÐ´±£»¤
+	DS1302_WriteData(DS1302_WrProtect, 0x80); //ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½
 }

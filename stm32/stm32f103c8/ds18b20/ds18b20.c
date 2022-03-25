@@ -1,50 +1,49 @@
 /*********************** 2018_06_07 *********************
- *ÎÄ¼þÃû  £ºds18b20.c
- *ÃèÊö    £ºds18b20Çý¶¯º¯Êý
- *Ó²¼þÁ¬½Ó£º----------------
- *¿â°æ±¾  £ºST3.5.0
- *×÷Õß    £ºxiaoboliu
+ *ï¿½Ä¼ï¿½ï¿½ï¿½  ï¿½ï¿½ds18b20.c
+ *ï¿½ï¿½ï¿½ï¿½    ï¿½ï¿½ds18b20ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ *Ó²ï¿½ï¿½ï¿½ï¿½ï¿½Ó£ï¿½----------------
+ *ï¿½ï¿½æ±¾  ï¿½ï¿½ST3.5.0
  *********************************************************/
 #include "ds18b20.h"
 
-/*ÉèÖÃ¹Ü½ÅÎªÊäÈë*/
+/*ï¿½ï¿½ï¿½Ã¹Ü½ï¿½Îªï¿½ï¿½ï¿½ï¿½*/
 void DS18B20_IO_IN(void)
 {
 	GPIO_InitTypeDef  GPIO_InitStructure;
 	RCC_APB2PeriphClockCmd(DS18B20_DQ_IN_CLK, ENABLE);	 
 	
-	GPIO_InitStructure.GPIO_Pin = DS18B20_DQ_IN_PIN;	   //ÎÂ¶È´«¸ÐÆ÷DQ¹Ü½Å
- 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU; 		   //ÊäÈëÉÏÀ­
+	GPIO_InitStructure.GPIO_Pin = DS18B20_DQ_IN_PIN;	   //ï¿½Â¶È´ï¿½ï¿½ï¿½ï¿½ï¿½DQï¿½Ü½ï¿½
+ 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU; 		   //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
  	GPIO_Init(DS18B20_DQ_IN_PORT, &GPIO_InitStructure);
 }
-/*ÉèÖÃ¹Ü½ÅÎ»Êä³ö*/
+/*ï¿½ï¿½ï¿½Ã¹Ü½ï¿½Î»ï¿½ï¿½ï¿½*/
 void DS18B20_IO_OUT(void)
 {
 	GPIO_InitTypeDef  GPIO_InitStructure;
 	RCC_APB2PeriphClockCmd(DS18B20_DQ_OUT_CLK, ENABLE);	 
 	
-	GPIO_InitStructure.GPIO_Pin = DS18B20_DQ_OUT_PIN;	   //ÎÂ¶È´«¸ÐÆ÷DQ¹Ü½Å
- 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 		 //ÍÆÍìÊä³ö
+	GPIO_InitStructure.GPIO_Pin = DS18B20_DQ_OUT_PIN;	   //ï¿½Â¶È´ï¿½ï¿½ï¿½ï¿½ï¿½DQï¿½Ü½ï¿½
+ 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 		 //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
  	GPIO_Init(DS18B20_DQ_OUT_PORT, &GPIO_InitStructure);
 }
 
-/*³õÊ¼»¯*/
+/*ï¿½ï¿½Ê¼ï¿½ï¿½*/
 u8 DS18B20_Init(void)
 { 	
 	u8 i;
 	
-	DS18B20_IO_OUT();    //ÉèÖÃ¹Ü½ÅÎªÊä³ö	
+	DS18B20_IO_OUT();    //ï¿½ï¿½ï¿½Ã¹Ü½ï¿½Îªï¿½ï¿½ï¿½	
 	Set_DS18B20_DQ_OUT;  //DQ=1
 	delay_us(1);
 	Clr_DS18B20_DQ_OUT;  //DQ=0
-	delay_us(500);       //À­µÍ×ÜÏß500us
-	Set_DS18B20_DQ_OUT;  //DQ=1 ÊÍ·Å×ÜÏß
+	delay_us(500);       //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½500us
+	Set_DS18B20_DQ_OUT;  //DQ=1 ï¿½Í·ï¿½ï¿½ï¿½ï¿½ï¿½
 	
-	DS18B20_IO_IN();     //ÉèÖÃ¹Ü½ÅÎªÊäÈë	
-	delay_us(38);        //ÑÓÊ±38us µÈ´ý¶ÁÈ¡
-	//¶ÁÈ¡
+	DS18B20_IO_IN();     //ï¿½ï¿½ï¿½Ã¹Ü½ï¿½Îªï¿½ï¿½ï¿½ï¿½	
+	delay_us(38);        //ï¿½ï¿½Ê±38us ï¿½È´ï¿½ï¿½ï¿½È¡
+	//ï¿½ï¿½È¡
   i=GPIO_ReadInputDataBit(DS18B20_DQ_IN_PORT,DS18B20_DQ_IN_PIN);
 	
 	delay_us(140);
@@ -54,16 +53,16 @@ u8 DS18B20_Init(void)
 	return i;
 }
 
-/*Ð´¿ØÖÆÆ÷0/1*/
-void write_byte(unsigned char dat)  //´«ÊäÒ»¸ö×Ö½Ú
+/*Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½0/1*/
+void write_byte(unsigned char dat)  //ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö½ï¿½
 {
-//²úÉúÒ»¸ö×Ö½Ú£¬ÖÁÉÙÒª½«×ÜÏßÀ­µÍ1us£¬Êý¾Ý´ÓµÍÎ»Ïò¸ßÎ»·¢ËÍ£»
+//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö½Ú£ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1usï¿½ï¿½ï¿½ï¿½ï¿½Ý´Óµï¿½Î»ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½Í£ï¿½
 	unsigned char i;
-	DS18B20_IO_OUT();    //ÉèÖÃ¹Ü½ÅÎªÊä³ö	
+	DS18B20_IO_OUT();    //ï¿½ï¿½ï¿½Ã¹Ü½ï¿½Îªï¿½ï¿½ï¿½	
 	for(i=0;i<8;i++)
 	{
 		Clr_DS18B20_DQ_OUT;  //DQ=0
-		delay_us(1);         //²úÉúÐ´Ê±Ðò
+		delay_us(1);         //ï¿½ï¿½ï¿½ï¿½Ð´Ê±ï¿½ï¿½
 		if(dat&0x01)
 		{
 			Set_DS18B20_DQ_OUT;  //DQ=1
@@ -72,50 +71,50 @@ void write_byte(unsigned char dat)  //´«ÊäÒ»¸ö×Ö½Ú
 		{
 			Clr_DS18B20_DQ_OUT;  //DQ=0
 		}
-		delay_us(77);          //ÑÓÊ±77us
-		Set_DS18B20_DQ_OUT;    //DQ=1 ÊÍ·Å×ÜÏß×¼±¸ÏÂÒ»´ÎÊý¾ÝÐ´Èë
+		delay_us(77);          //ï¿½ï¿½Ê±77us
+		Set_DS18B20_DQ_OUT;    //DQ=1 ï¿½Í·ï¿½ï¿½ï¿½ï¿½ï¿½×¼ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½
 		delay_us(1);
 		dat>>=1;
 	}
 }
 
-/*¶ÁÈ¡Êý¾Ý*/
+/*ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½*/
 unsigned char read_byte()
 {
 	unsigned char dat, i ,j;
 	for(i=0;i<8;i++)
 	{
-		DS18B20_IO_OUT();    //ÉèÖÃ¹Ü½ÅÎªÊä³ö
+		DS18B20_IO_OUT();    //ï¿½ï¿½ï¿½Ã¹Ü½ï¿½Îªï¿½ï¿½ï¿½
 		Clr_DS18B20_DQ_OUT;  //DQ=0
-		delay_us(1);         //²úÉú¶ÁÊ±Ðò
+		delay_us(1);         //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 		Set_DS18B20_DQ_OUT;  //DQ=1
-		delay_us(1);         //ÊÍ·Å×ÜÏß
+		delay_us(1);         //ï¿½Í·ï¿½ï¿½ï¿½ï¿½ï¿½
 		
-		DS18B20_IO_IN();     //ÉèÖÃ¹Ü½ÅÎªÊäÈë	
+		DS18B20_IO_IN();     //ï¿½ï¿½ï¿½Ã¹Ü½ï¿½Îªï¿½ï¿½ï¿½ï¿½	
 		j=GPIO_ReadInputDataBit(DS18B20_DQ_IN_PORT,DS18B20_DQ_IN_PIN);
-		delay_us(77);        //ÑÓÊ±77us
-		DS18B20_IO_OUT();    //ÉèÖÃ¹Ü½ÅÎªÊä³ö
+		delay_us(77);        //ï¿½ï¿½Ê±77us
+		DS18B20_IO_OUT();    //ï¿½ï¿½ï¿½Ã¹Ü½ï¿½Îªï¿½ï¿½ï¿½
 		Set_DS18B20_DQ_OUT;  //DQ=1
 		delay_us(1);
-		dat=(j<<7)|(dat>>1); //Êý¾Ý´ÓµÍÎ»´«Ïò¸ßÎ»
+		dat=(j<<7)|(dat>>1); //ï¿½ï¿½ï¿½Ý´Óµï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½Î»
 	}
 	return dat;
 }
 
-/*Ò»´ÎÎÂ¶È¶ÁÈ¡*/  // ½ö¶ÁÈ¡ÕýÎÂ¶È
+/*Ò»ï¿½ï¿½ï¿½Â¶È¶ï¿½È¡*/  // ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½Â¶ï¿½
 double DS18B20_data(void)
 {
 	int d=0;
 	unsigned char L,M;
 
 	DS18B20_Init();
-	write_byte(0xcc); //·¢ËÍºöÂÔROMÖ¸Áî
-  write_byte(0x44); //·¢ËÍÎÂ¶È×ª»»Ö¸Áî
+	write_byte(0xcc); //ï¿½ï¿½ï¿½Íºï¿½ï¿½ï¿½ROMÖ¸ï¿½ï¿½
+  write_byte(0x44); //ï¿½ï¿½ï¿½ï¿½ï¿½Â¶ï¿½×ªï¿½ï¿½Ö¸ï¿½ï¿½
 	DS18B20_Init();
-  write_byte(0xcc); //·¢ËÍºöÂÔROMÖ¸Áî
-  write_byte(0xbe); //¶ÁÈ¡DS18B20ÔÝ´æÆ÷Öµ
-	L = read_byte();  //ÏÈ½ÓÊÕµÍ°ËÎ»
-	M = read_byte();  //ÔÙ½ÓÊÕ¸ß°ËÎ»
+  write_byte(0xcc); //ï¿½ï¿½ï¿½Íºï¿½ï¿½ï¿½ROMÖ¸ï¿½ï¿½
+  write_byte(0xbe); //ï¿½ï¿½È¡DS18B20ï¿½Ý´ï¿½ï¿½ï¿½Öµ
+	L = read_byte();  //ï¿½È½ï¿½ï¿½ÕµÍ°ï¿½Î»
+	M = read_byte();  //ï¿½Ù½ï¿½ï¿½Õ¸ß°ï¿½Î»
 	d = M;
 	d<<=8;
 	d|=L;

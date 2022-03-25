@@ -1,9 +1,8 @@
 /*********************** 2021_04_19*********************
- *ÎÄ¼þÃû  £ºtimer.c
- *ÃèÊö    £º¶¨Ê±Æ÷
- *Ó²¼þÁ¬½Ó£º
- *¿â°æ±¾  £ºST3.5.0
- *×÷Õß    £ºxiaobo
+ *ï¿½Ä¼ï¿½ï¿½ï¿½  ï¿½ï¿½timer.c
+ *ï¿½ï¿½ï¿½ï¿½    ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+ *Ó²ï¿½ï¿½ï¿½ï¿½ï¿½Ó£ï¿½
+ *ï¿½ï¿½æ±¾  ï¿½ï¿½ST3.5.0
  *********************************************************/
 #include "timer.h"
 #include "led.h"
@@ -22,19 +21,19 @@ void TIM_Configuration(void)
   RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2 , ENABLE);
   TIM_DeInit(TIM2);
 	
-	/* ×Ô¶¯ÖØ×°ÔØ¼Ä´æÆ÷ÖÜÆÚµÄÖµ(¼ÆÊýÖµ),ÀÛ¼Æ TIM_Period¸öÆµÂÊºó²úÉúÒ»¸ö¸üÐÂ»òÕßÖÐ¶Ï */
+	/* ï¿½Ô¶ï¿½ï¿½ï¿½×°ï¿½Ø¼Ä´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½Öµ(ï¿½ï¿½ï¿½ï¿½Öµ),ï¿½Û¼ï¿½ TIM_Periodï¿½ï¿½Æµï¿½Êºï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Â»ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ */
   TIM_TimeBaseStructure.TIM_Period = (10000 - 1);
 	
-	/* Ê±ÖÓÔ¤·ÖÆµÊý   ÀýÈç£ºÊ±ÖÓÆµÂÊ=72MHZ/(Ê±ÖÓÔ¤·ÖÆµ+1) */
+	/* Ê±ï¿½ï¿½Ô¤ï¿½ï¿½Æµï¿½ï¿½   ï¿½ï¿½ï¿½ç£ºÊ±ï¿½ï¿½Æµï¿½ï¿½=72MHZ/(Ê±ï¿½ï¿½Ô¤ï¿½ï¿½Æµ+1) */
 //  TIM_TimeBaseStructure.TIM_Prescaler= (36000 - 1);	
 	TIM_TimeBaseStructure.TIM_Prescaler = (72 - 1);
 	
 	/*
-		Ê¹ÓÃ¼ÆÊ±Æ÷ÖÐ¶Ï¸Ä±ä IO ¿ÚµçÆ½£¬ÖÐ¶ÏÒ»´Î±ä»¯Ò»´ÎµçÆ½¡£
+		Ê¹ï¿½Ã¼ï¿½Ê±ï¿½ï¿½ï¿½Ð¶Ï¸Ä±ï¿½ IO ï¿½Úµï¿½Æ½ï¿½ï¿½ï¿½Ð¶ï¿½Ò»ï¿½Î±ä»¯Ò»ï¿½Îµï¿½Æ½ï¿½ï¿½
 	
-		µ± TIM_Prescaler = (72 - 1) Ê±£º
+		ï¿½ï¿½ TIM_Prescaler = (72 - 1) Ê±ï¿½ï¿½
 	
-				TIM_Period					Ê¾²¨Æ÷Êµ²âÆµÂÊ   ¼ÆÊ±Öµ
+				TIM_Period					Ê¾ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½Æµï¿½ï¿½   ï¿½ï¿½Ê±Öµ
 					2 - 1	  							 250kHz        2us
 	        6 - 1					  		 83.34kHz        6us
 	       10 -	1								 50.00kHz       10us
@@ -46,17 +45,17 @@ void TIM_Configuration(void)
 				100 - 1								 5.000kHz			 100us
 				100		  							 4.950kHz      101us
 				 
-		ËùÒÔ£ºTIM_Period µÄ¼ÆÊýÖµÓ¦Îª (n - 1), nÎªÄ¿±ê¼ÆÊ±Î¢ÃëÖµ¡£
-		×¢Òâ£ºTIM_Period ²»ÄÜÎª 0 £¡£¡£¡
+		ï¿½ï¿½ï¿½Ô£ï¿½TIM_Period ï¿½Ä¼ï¿½ï¿½ï¿½ÖµÓ¦Îª (n - 1), nÎªÄ¿ï¿½ï¿½ï¿½Ê±Î¢ï¿½ï¿½Öµï¿½ï¿½
+		×¢ï¿½â£ºTIM_Period ï¿½ï¿½ï¿½ï¿½Îª 0 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	*/
   
-	TIM_TimeBaseStructure.TIM_ClockDivision=TIM_CKD_DIV1; 			/* ²ÉÑù·ÖÆµ */
-  TIM_TimeBaseStructure.TIM_CounterMode=TIM_CounterMode_Up; 	/* ÏòÉÏ¼ÆÊýÄ£Ê½ */
-  TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);             /* ³õÊ¼»¯ TIMx Ê±¼ä»ùÊý */
+	TIM_TimeBaseStructure.TIM_ClockDivision=TIM_CKD_DIV1; 			/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æµ */
+  TIM_TimeBaseStructure.TIM_CounterMode=TIM_CounterMode_Up; 	/* ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½Ä£Ê½ */
+  TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);             /* ï¿½ï¿½Ê¼ï¿½ï¿½ TIMx Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	
-  TIM_ClearFlag(TIM2, TIM_FLAG_Update);				/* Çå³ýÒç³öÖÐ¶Ï±êÖ¾ */
-  TIM_ITConfig(TIM2,TIM_IT_Update,ENABLE);    /* ¿ªÆô¶¨Ê±Æ÷¸üÐÂÖÐ¶Ï */
-  TIM_Cmd(TIM2, ENABLE);											/* ¿ªÆôÊ±ÖÓ */
+  TIM_ClearFlag(TIM2, TIM_FLAG_Update);				/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶Ï±ï¿½Ö¾ */
+  TIM_ITConfig(TIM2,TIM_IT_Update,ENABLE);    /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ */
+  TIM_Cmd(TIM2, ENABLE);											/* ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ */
 }
 
 /*******************************************************************************
@@ -73,8 +72,8 @@ void NVIC_Configuration(void)
 	 
   NVIC_PriorityGroupConfig(NVIC_PriorityGroup_0);
   NVIC_InitStructure.NVIC_IRQChannel = TIM2_IRQn;
-  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0; // Ö÷ÓÅÏÈ¼¶
-  NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;	      // ´Î
+  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0; // ï¿½ï¿½ï¿½ï¿½ï¿½È¼ï¿½
+  NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;	      // ï¿½ï¿½
   NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
   NVIC_Init(&NVIC_InitStructure);
 }
@@ -91,9 +90,9 @@ void TIM2_IRQHandler(void)
 {
   static uint8_t display;
 	
-	if ( TIM_GetITStatus(TIM2 , TIM_IT_Update) != RESET ) // ÅÐ¶ÏÖÐ¶Ï±êÖ¾Î»
+	if ( TIM_GetITStatus(TIM2 , TIM_IT_Update) != RESET ) // ï¿½Ð¶ï¿½ï¿½Ð¶Ï±ï¿½Ö¾Î»
 	{
-		TIM_ClearITPendingBit(TIM2 , TIM_FLAG_Update);      // Çå³ýÖÐ¶Ï±êÖ¾Î»
+		TIM_ClearITPendingBit(TIM2 , TIM_FLAG_Update);      // ï¿½ï¿½ï¿½ï¿½Ð¶Ï±ï¿½Ö¾Î»
       
 	    if( display ) 
 		{ 

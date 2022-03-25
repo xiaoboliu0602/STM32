@@ -1,7 +1,6 @@
 /**
   ******************************************************************************
   * @file    timing_systick.c
-  * @author  xiaobo
   * @version V3.5.0
   * @date    20191217
   * @brief   Systick configuration file.
@@ -28,9 +27,9 @@ u32 timingdata = 0;
   */	
 void SysTick_Init(void)
 {
-  /* SystemCoreClock / 1000     1ms ÖÐ¶ÏÒ»´Î
-	 * SystemCoreClock / 100000  10us ÖÐ¶ÏÒ»´Î
-	 * SystemCoreClock / 1000000  1us ÖÐ¶ÏÒ»´Î
+  /* SystemCoreClock / 1000     1ms ï¿½Ð¶ï¿½Ò»ï¿½ï¿½
+	 * SystemCoreClock / 100000  10us ï¿½Ð¶ï¿½Ò»ï¿½ï¿½
+	 * SystemCoreClock / 1000000  1us ï¿½Ð¶ï¿½Ò»ï¿½ï¿½
 	 */
 	
 	

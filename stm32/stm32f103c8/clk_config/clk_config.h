@@ -4,13 +4,13 @@
 #include "stm32f10x.h"
 
 /**
-  * Ê¹ÓÃHSEÊ±£¬SYSCLK = 8M * RCC_PLLMul_x, x:[2,3,...16],×î¸ßÊÇ128M
+  * Ê¹ï¿½ï¿½HSEÊ±ï¿½ï¿½SYSCLK = 8M * RCC_PLLMul_x, x:[2,3,...16],ï¿½ï¿½ï¿½ï¿½ï¿½128M
   * HSE_SetSysClock(RCC_PLLMul_9);
   */
 void HSE_SetSysClock(uint32_t pllmul); 
 
 /**
-  * Ê¹ÓÃHSIÊ±£¬SYSCLK = 4M * RCC_PLLMul_x, x:[2,3,...16],×î¸ßÊÇ64MH
+  * Ê¹ï¿½ï¿½HSIÊ±ï¿½ï¿½SYSCLK = 4M * RCC_PLLMul_x, x:[2,3,...16],ï¿½ï¿½ï¿½ï¿½ï¿½64MH
   * HSI_SetSysClock(RCC_PLLMul_16);
   */
 void HSI_SetSysClock(uint32_t pllmul);

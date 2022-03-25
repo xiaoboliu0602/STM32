@@ -1,9 +1,8 @@
 /********************************************************************************
   * @file    clk_config.c 
-  * @author  xiaoboliu
   * @version V3.5.0
   * @date    27-NOV-2019
-  * @brief   HSE HSI Configuration 
+  * @brief   HSE HSI Configuration
 	*
   * 程序来到main函数之前，启动文件：statup_stm32f10x_hd.s已经调用SystemInit()函数
 	* 把系统时钟初始化成72MHZ
