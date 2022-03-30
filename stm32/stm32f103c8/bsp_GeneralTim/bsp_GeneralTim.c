@@ -6,9 +6,6 @@
   * @date    30-March-2022
   * @brief   Time base configuration
   ******************************************************************************
-  * @attention
-  *
-  ******************************************************************************
   */
 
 #include "bsp_GeneralTim.h"
@@ -46,25 +43,25 @@ static void GENERAL_TIM_GPIO_Config(void)
 
 
 /*
-* ×¢Òâ£ºTIM_TimeBaseInitTypeDef½á¹¹ÌåÀïÃæÓÐ5¸ö³ÉÔ±£¬TIM6ºÍTIM7µÄ¼Ä´æÆ÷ÀïÃæÖ»ÓÐ
-* TIM_PrescalerºÍTIM_Period£¬ËùÒÔÊ¹ÓÃTIM6ºÍTIM7µÄÊ±ºòÖ»Ðè³õÊ¼»¯ÕâÁ½¸ö³ÉÔ±¼´¿É£¬
-* ÁíÍâÈý¸ö³ÉÔ±ÊÇÍ¨ÓÃ¶¨Ê±Æ÷ºÍ¸ß¼¶¶¨Ê±Æ÷²ÅÓÐ.
+* ×¢ï¿½â£ºTIM_TimeBaseInitTypeDefï¿½á¹¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½5ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½TIM6ï¿½ï¿½TIM7ï¿½Ä¼Ä´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½
+* TIM_Prescalerï¿½ï¿½TIM_Periodï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½TIM6ï¿½ï¿½TIM7ï¿½ï¿½Ê±ï¿½ï¿½Ö»ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½É£ï¿½
+* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½Í¨ï¿½Ã¶ï¿½Ê±ï¿½ï¿½ï¿½Í¸ß¼ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 *-----------------------------------------------------------------------------
 *typedef struct
-*{ TIM_Prescaler            ¶¼ÓÐ
-*  TIM_CounterMode			     TIMx,x[6,7]Ã»ÓÐ£¬ÆäËû¶¼ÓÐ
-*  TIM_Period               ¶¼ÓÐ
-*  TIM_ClockDivision        TIMx,x[6,7]Ã»ÓÐ£¬ÆäËû¶¼ÓÐ
-*  TIM_RepetitionCounter    TIMx,x[1,8,15,16,17]²ÅÓÐ
+*{ TIM_Prescaler            ï¿½ï¿½ï¿½ï¿½
+*  TIM_CounterMode			     TIMx,x[6,7]Ã»ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+*  TIM_Period               ï¿½ï¿½ï¿½ï¿½
+*  TIM_ClockDivision        TIMx,x[6,7]Ã»ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+*  TIM_RepetitionCounter    TIMx,x[1,8,15,16,17]ï¿½ï¿½ï¿½ï¿½
 *}TIM_TimeBaseInitTypeDef; 
 *-----------------------------------------------------------------------------
 */
 
-/* ----------------   PWMÐÅºÅ ÖÜÆÚºÍÕ¼¿Õ±ÈµÄ¼ÆËã--------------- */
-// ARR £º×Ô¶¯ÖØ×°ÔØ¼Ä´æÆ÷µÄÖµ
-// CLK_cnt£º¼ÆÊýÆ÷µÄÊ±ÖÓ£¬µÈÓÚ Fck_int / (psc+1) = 72M/(psc+1)
-// PWM ÐÅºÅµÄÖÜÆÚ T = ARR * (1/CLK_cnt) = ARR*(PSC+1) / 72M
-// Õ¼¿Õ±ÈP=CCR/(ARR+1)
+/* ----------------   PWMï¿½Åºï¿½ ï¿½ï¿½ï¿½Úºï¿½Õ¼ï¿½Õ±ÈµÄ¼ï¿½ï¿½ï¿½--------------- */
+// ARR ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½×°ï¿½Ø¼Ä´ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+// CLK_cntï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Ó£ï¿½ï¿½ï¿½ï¿½ï¿½ Fck_int / (psc+1) = 72M/(psc+1)
+// PWM ï¿½ÅºÅµï¿½ï¿½ï¿½ï¿½ï¿½ T = ARR * (1/CLK_cnt) = ARR*(PSC+1) / 72M
+// Õ¼ï¿½Õ±ï¿½P=CCR/(ARR+1)
 
 static void GENERAL_TIM_Mode_Config(void)
 {
@@ -73,28 +70,28 @@ static void GENERAL_TIM_Mode_Config(void)
 
   GENERAL_TIM_APBxClock_FUN(GENERAL_TIM_CLK,ENABLE);
 
-  // ×Ô¶¯ÖØ×°ÔØ¼Ä´æÆ÷µÄÖµ£¬ÀÛ¼ÆTIM_Period+1¸öÆµÂÊºó²úÉúÒ»¸ö¸üÐÂ»òÕßÖÐ¶Ï
+  // ï¿½Ô¶ï¿½ï¿½ï¿½×°ï¿½Ø¼Ä´ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½Û¼ï¿½TIM_Period+1ï¿½ï¿½Æµï¿½Êºï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Â»ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½
   TIM_TimeBaseStructure.TIM_Period=GENERAL_TIM_PERIOD;
-  // Çý¶¯CNT¼ÆÊýÆ÷µÄÊ±ÖÓ = Fck_int/(psc+1)
+  // ï¿½ï¿½ï¿½ï¿½CNTï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ = Fck_int/(psc+1)
   TIM_TimeBaseStructure.TIM_Prescaler= GENERAL_TIM_PSC;
   TIM_TimeBaseStructure.TIM_ClockDivision=TIM_CKD_DIV1;
   TIM_TimeBaseStructure.TIM_CounterMode=TIM_CounterMode_Up;
   TIM_TimeBaseStructure.TIM_RepetitionCounter=0;
   TIM_TimeBaseInit(GENERAL_TIM, &TIM_TimeBaseStructure);
 
-  /*--------------------ÊäÈë²¶»ñ½á¹¹Ìå³õÊ¼»¯-------------------*/
+  /*--------------------ï¿½ï¿½ï¿½ë²¶ï¿½ï¿½á¹¹ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½-------------------*/
 
-  // ÅäÖÃÊäÈë²¶»ñµÄÍ¨µÀ£¬ÐèÒª¸ù¾Ý¾ßÌåµÄGPIOÀ´ÅäÖÃ
+  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë²¶ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½Ý¾ï¿½ï¿½ï¿½ï¿½GPIOï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
   TIM_ICInitStructure.TIM_Channel = GENERAL_TIM_CHANNEL_x;
-  // ÊäÈë²¶»ñÐÅºÅµÄ¼«ÐÔÅäÖÃ
+  // ï¿½ï¿½ï¿½ë²¶ï¿½ï¿½ï¿½ÅºÅµÄ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
   TIM_ICInitStructure.TIM_ICPolarity = GENERAL_TIM_STRAT_ICPolarity;
-  // ÊäÈëÍ¨µÀºÍ²¶»ñÍ¨µÀµÄÓ³Éä¹ØÏµ£¬ÓÐÖ±Á¬ºÍ·ÇÖ±Á¬Á½ÖÖ
+  // ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½Í²ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½ï¿½Í·ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
   TIM_ICInitStructure.TIM_ICSelection = TIM_ICSelection_DirectTI;
-  // ÊäÈëµÄÐèÒª±»²¶»ñµÄÐÅºÅµÄ·ÖÆµÏµÊý
+  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÅºÅµÄ·ï¿½ÆµÏµï¿½ï¿½
   TIM_ICInitStructure.TIM_ICPrescaler = TIM_ICPSC_DIV1;
-  // ÊäÈëµÄÐèÒª±»²¶»ñµÄÐÅºÅµÄÂË²¨ÏµÊý
+  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÅºÅµï¿½ï¿½Ë²ï¿½Ïµï¿½ï¿½
   TIM_ICInitStructure.TIM_ICFilter = 0;
-  // ¶¨Ê±Æ÷ÊäÈë²¶»ñ³õÊ¼»¯
+  // ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ë²¶ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½
   TIM_ICInit(GENERAL_TIM, &TIM_ICInitStructure);
 
   TIM_ClearFlag(GENERAL_TIM, TIM_FLAG_Update|GENERAL_TIM_IT_CCx);	
