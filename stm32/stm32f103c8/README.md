@@ -26,7 +26,7 @@ timing_systick            # 滴答计时器，提供一个有限范围增加的�
 time2                     # 通用定时器 TIM2 驱动；
 
 timer                     # 通用定时器 TIM2 驱动，有详细测试说明；
-	
+
 oled                      # SSD1306 0.69 ince OLED 屏驱动；
 
 HC595                     # 三八译码器 74HC595 驱动；
@@ -36,4 +36,6 @@ bsp_GeneralTim            # PWM 配置；
 exti_Config               # 外部中断配置；
 
 Programming_moduleblock   # 矩阵键盘驱动；
+
+stepper_motor             # 步进电机驱动，8拍；
 ```
